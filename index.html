@@ -35,14 +35,15 @@
         }
 
         .profile-logo {
-            width: 120px;
-            height: 120px;
+            width: 150px; /* Aumentei um pouco para dar mais destaque ao seu novo logo */
+            height: 150px;
             border-radius: 50%;
             object-fit: contain;
-            background-color: #fff;
+            /* background-color: #fff; */ /* REMOVIDO: Para não criar um círculo branco atrás do seu logo escuro */
             margin-bottom: 20px;
             border: 3px solid var(--primary);
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            padding: 10px; /* Adicionei um padding para o logo não encostar na borda */
         }
 
         header h1 { margin: 0; font-size: 3.5em; font-weight: 700; letter-spacing: -1px; }
@@ -125,7 +126,7 @@
 <body>
 
     <header>
-        <img src="Logo Provisória.jpg" alt="Logo Richard Viana" class="profile-logo">
+        <img src="logo.png" alt="Logo Richard Viana Mendes" class="profile-logo">
         <h1>Richard Viana Mendes</h1>
         <div class="subtitle">Analista de Dados | Power BI, SQL & Engenharia de Automação</div>
         <p class="summary">
@@ -297,7 +298,7 @@
                     <li><strong>Status Visual Preditivo:</strong> Para facilitar a leitura rápida de diretores, criei flags visuais automatizadas indicando se a tendência do cliente está <em>"Acima"</em>, <em>"Dentro"</em> ou <em>"Abaixo do esperado"</em>.</li>
                 </ul>
                 <div class="impact-box">
-                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> O modelo aproxima drasticamente o Comercial da Produção Fabril. Ele fornece previsibilidade financeira de caixa, evita capital imobilizado em estoque parado e antecipa quedas bruscas de faturamento antes mesmo do mês fechar.</p>
+                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> O modelo aproxima drasticamente o Comercial da Produção Fabril. He fornece previsibilidade financeira de caixa, evita capital imobilizado em estoque parado e antecipa quedas bruscas de faturamento antes mesmo do mês fechar.</p>
                 </div>
             </div>
         </div>
@@ -329,15 +330,15 @@
             <span class="close-btn" onclick="closeModal('modal-periodicidade')">&times;</span>
             <div class="modal-body">
                 <h3>Análise Cohort: Retenção, Churn & Sazonalidade (Periodicidade)</h3>
-                <p>Adquirir um novo cliente custa muito mais do que manter um atual. Baseado nessa premissa, desenvolvi este sistema de monitoramento de saúde de carteira focado em combater o <em>Churn</em> (evasão silenciosa de clientes) através do sistema TOTVS.</p>
+                <p>Adquirir um novo cliente custa muito mais do que manter um atual. Baseado nessa premissa, desenvolvi este sistema de monitoramento de saúde de carteira focado em combater o Churn (evasão silenciosa de clientes) através do sistema TOTVS.</p>
                 
                 <h4>Engenharia DAX de Categorização de Clientes:</h4>
                 <p>Em vez de analisar apenas faturamento, criei um algoritmo via DAX que rastreia os "Dias Sem Compras" versus a "Média de Intervalos" histórica, classificando os clientes automaticamente em quatro buckets de urgência:</p>
                 <ul>
-                    <li><strong>🟢 Ativos:</strong> Comprando dentro ou no limite do intervalo esperado. Saúde ótima.</li>
-                    <li><strong>🟡 Em Reativação:</strong> O ponto crítico do dashboard. Clientes que estouraram o prazo médio, mas ainda estão na janela "recuperável". É o alerta para o setor comercial ligar imediatamente.</li>
-                    <li><strong>🔴 Inativos:</strong> Ultrapassaram gravemente a janela de tempo e precisam ser tratados pelo marketing/comercial como clientes perdidos a serem reconquistados.</li>
-                    <li><strong>🔵 Potenciais:</strong> Clientes novos sem histórico profundo para traçar médias precisas.</li>
+                    <li><strong>Ativos:</strong> Comprando dentro ou no limite do intervalo esperado. Saúde ótima.🟢</li>
+                    <li><strong>Em Reativação:</strong> O ponto crítico do dashboard. Clientes que estouraram o prazo médio, mas ainda estão na janela "recuperável". É o alerta para o setor comercial ligar imediatamente.🟡</li>
+                    <li><strong>Inativos:</strong> Ultrapassaram gravemente a janela de tempo e precisam ser tratados pelo marketing/comercial como clientes perdidos a serem reconquistados.🔴</li>
+                    <li><strong>Potenciais:</strong> Clientes novos sem histórico profundo para traçar médias precisas.🔵</li>
                 </ul>
 
                 <h4>Métricas de Sazonalidade e Comportamento Operacional:</h4>
@@ -347,7 +348,7 @@
                     <li><strong>Variação Week-over-Week (WoW):</strong> Indicadores comparando o crescimento ou queda exata da emissão de notas da semana atual contra a semana anterior, dia após dia.</li>
                 </ul>
 
-                <h4>Storytelling com Dados (NLG - Natural Language Generation):</h4>
+                <h4>Data Storytelling Corporativo (Text Generation):</h4>
                 <p>Implementei um recurso de "Storyline Semanal". O dashboard compila os complexos dados gráficos e traduz automaticamente em um pequeno resumo textual legível, entregando de bandeja: percentual de crescimento, total de notas e o dia mais forte da semana.</p>
                 <div class="impact-box">
                     <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> Permite à equipe de vendas atuar de forma proativa, ligando para clientes prestes a "esfriar" (fase de reativação) antes de irem para o concorrente, além de otimizar a equipe de expedição logística equilibrando dias de faturamento.</p>
@@ -366,7 +367,7 @@
                 <h4>Arquitetura do Fluxo de Automação:</h4>
                 <ul>
                     <li><strong>Trigger Baseado em Cron (Gatilho Temporal):</strong> O servidor n8n acorda autonomamente toda segunda-feira, pontualmente às 08h30.</li>
-                    <li><strong>Comunicação de APIs (Data Extraction):</strong> O fluxo aciona os servidores da Microsoft. Ele varre as planilhas consolidadas no OneDrive e atualiza o modelo semântico no Power BI Service para garantir que a base esteja com os dados de D-1 intactos.</li>
+                    <li><strong>Comunicação de APIs (Data Extraction):</strong> O fluxo aciona os servidores da Microsoft. He varre as planilhas consolidadas no OneDrive e atualiza o modelo semântico no Power BI Service para garantir que a base esteja com os dados de D-1 intactos.</li>
                     <li><strong>Cérebro Analítico (Integração OpenAI):</strong> Em vez de mandar uma tabela crua, a automação envia os <em>arrays</em> de dados faturados para um Agente de IA parametrizado através da API da OpenAI. A IA é instruída através de prompt engineering a formatar, resumir e gerar o corpo do e-mail interpretando se a semana foi de alta ou queda.</li>
                     <li><strong>Disparo Automatizado:</strong> O próprio fluxo assume o nó de e-mail e distribui o relatório executivo diretamente nas caixas de entrada dos diretores e líderes de área.</li>
                 </ul>
@@ -386,7 +387,7 @@
                 
                 <h4>Processo Completo e Técnicas Empregadas:</h4>
                 <ul>
-                    <li><strong>ETL & Data Cleaning:</strong> Utilização pesada do Power Query para localizar <em>outliers</em> (vendas exorbitantes irreais) e dados nulos ou corrompidos na base original. Ajuste e saneamento desses dados, culminando na montagem de um Star Schema maduro para alta performance de processamento.</li>
+                    <li><strong>ETL & Data Cleaning:</strong> Utilização pesada do Power Query para localizar Outliers (vendas exorbitantes irreais) e dados nulos ou corrompidos na base original. Ajuste e saneamento desses dados, culminando na montagem de um Star Schema maduro para alta performance de processamento.</li>
                     <li><strong>DAX e Inteligência de Tempo Financeira:</strong> A raiz do painel não é apenas a soma do total. Criei lógicas avançadas de tempo calculando crescimento <em>Month-over-Month (MoM)</em> e <em>Year-over-Year (YoY)</em> para acompanhar a cadência evolutiva dos lucros.</li>
                     <li><strong>Análise Multidimensional:</strong>
                         <ul>
@@ -442,11 +443,11 @@
                     <li><strong>Manipulação Unpivot:</strong> Populações divididas por gênero e etnia estavam fatiadas em diversas colunas, o que anula as possibilidades analíticas no DAX. Executei comandos estruturados de Unpivot e exclusão de colunas obsoletas para criar uma base limpa de análise tabular.</li>
                 </ul>
 
-                <h4>Storytelling Crítico & Descobertas:</h4>
+                <h4>Data Storytelling Corporativo: Critical Thinking:</h4>
                 <p>Deixei os dados contarem a história. No painel, destaquei fatos fundamentais e estruturais:</p>
                 <ul>
                     <li><strong>A Força do Sul (Califórnia e Texas):</strong> Identifiquei a explosão populacional nesses estados movidos por diversidade cultural massiva, clima e recepção pesada de imigrantes globais.</li>
-                    <li><strong>Desmistificando Vieses:</strong> O painel mostra o poder da diversidade em estados geralmente lidos como "conservadores". O cruzamento de dados quebrou a suposição de que estados do Sul profundo americano são majoritariamente homogêneos; a volumetria de etnias refuta o dado.</li>
+                    <li><strong>Desmistificando Vieses:</strong> O painel mostra o poder da diversidade em estados geralmente lidos como conservadores. O cruzamento de dados quebrou a suposição de que estados do Sul profundo americano são majoritariamente homogêneos; a volumetria de etnias refuta o dado.</li>
                     <li><strong>Administração e Controle (Condados):</strong> Análise revelou uma discrepância gigantesca na divisão territorial (condados) do estado do Texas, um artifício governamental para manter controle de autoridade sobre áreas absurdamente extensas.</li>
                 </ul>
                 <div class="impact-box">
