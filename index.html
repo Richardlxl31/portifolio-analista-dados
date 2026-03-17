@@ -34,16 +34,18 @@
             border-bottom: 1px solid #334155;
         }
 
+        /* ----- AJUSTE DA LOGO AQUI ----- */
         .profile-logo {
-            width: 150px; /* Aumentei um pouco para dar mais destaque ao seu novo logo */
+            width: 150px;
             height: 150px;
             border-radius: 50%;
-            object-fit: contain;
-            /* background-color: #fff; */ /* REMOVIDO: Para não criar um círculo branco atrás do seu logo escuro */
-            margin-bottom: 20px;
-            border: 3px solid var(--primary);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            padding: 10px; /* Adicionei um padding para o logo não encostar na borda */
+            object-fit: cover; /* Corta a imagem perfeitamente no formato do círculo */
+            object-position: center; /* Garante que o R fique no meio exato */
+            background-color: #ffffff; /* Fundo branco fixo para destacar o logo escuro */
+            margin: 0 auto 20px auto; /* Centralização absoluta (cima/baixo/lados) */
+            border: 4px solid var(--primary); /* Borda azul colada na imagem */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6); /* Sombra mais elegante */
+            display: block;
         }
 
         header h1 { margin: 0; font-size: 3.5em; font-weight: 700; letter-spacing: -1px; }
@@ -127,6 +129,7 @@
 
     <header>
         <img src="logo.png" alt="Logo Richard Viana Mendes" class="profile-logo">
+        
         <h1>Richard Viana Mendes</h1>
         <div class="subtitle">Analista de Dados | Power BI, SQL & Engenharia de Automação</div>
         <p class="summary">
@@ -298,7 +301,7 @@
                     <li><strong>Status Visual Preditivo:</strong> Para facilitar a leitura rápida de diretores, criei flags visuais automatizadas indicando se a tendência do cliente está <em>"Acima"</em>, <em>"Dentro"</em> ou <em>"Abaixo do esperado"</em>.</li>
                 </ul>
                 <div class="impact-box">
-                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> O modelo aproxima drasticamente o Comercial da Produção Fabril. He fornece previsibilidade financeira de caixa, evita capital imobilizado em estoque parado e antecipa quedas bruscas de faturamento antes mesmo do mês fechar.</p>
+                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> O modelo aproxima drasticamente o Comercial da Produção Fabril. Ele fornece previsibilidade financeira de caixa, evita capital imobilizado em estoque parado e antecipa quedas bruscas de faturamento antes mesmo do mês fechar.</p>
                 </div>
             </div>
         </div>
@@ -367,7 +370,7 @@
                 <h4>Arquitetura do Fluxo de Automação:</h4>
                 <ul>
                     <li><strong>Trigger Baseado em Cron (Gatilho Temporal):</strong> O servidor n8n acorda autonomamente toda segunda-feira, pontualmente às 08h30.</li>
-                    <li><strong>Comunicação de APIs (Data Extraction):</strong> O fluxo aciona os servidores da Microsoft. He varre as planilhas consolidadas no OneDrive e atualiza o modelo semântico no Power BI Service para garantir que a base esteja com os dados de D-1 intactos.</li>
+                    <li><strong>Comunicação de APIs (Data Extraction):</strong> O fluxo aciona os servidores da Microsoft. Ele varre as planilhas consolidadas no OneDrive e atualiza o modelo semântico no Power BI Service para garantir que a base esteja com os dados de D-1 intactos.</li>
                     <li><strong>Cérebro Analítico (Integração OpenAI):</strong> Em vez de mandar uma tabela crua, a automação envia os <em>arrays</em> de dados faturados para um Agente de IA parametrizado através da API da OpenAI. A IA é instruída através de prompt engineering a formatar, resumir e gerar o corpo do e-mail interpretando se a semana foi de alta ou queda.</li>
                     <li><strong>Disparo Automatizado:</strong> O próprio fluxo assume o nó de e-mail e distribui o relatório executivo diretamente nas caixas de entrada dos diretores e líderes de área.</li>
                 </ul>
