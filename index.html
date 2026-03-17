@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Viana | Analista de Dados</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS PREMIUM - Tema Escuro/Tech (Nível Sênior) */
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho Hero */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(15,23,42,1) 0%, rgba(30,41,59,1) 100%);
+            border-bottom: 1px solid #334155;
+        }
+
+        .profile-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: contain;
+            background-color: #fff;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        header h1 { margin: 0; font-size: 3.5em; font-weight: 700; letter-spacing: -1px; }
+        .subtitle { font-size: 1.4em; color: var(--primary); font-weight: 500; margin-top: 10px; }
+        .summary { max-width: 800px; margin: 20px auto; color: var(--text-muted); font-size: 1.1em; }
+
+        .header-actions { margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
+        
+        .social-links a {
+            color: var(--text-main);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .social-links a:hover { color: var(--primary); }
+
+        /* Botões */
+        .btn-primary { background: var(--primary); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; border: none; font-size: 1em; }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        
+        .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; margin-top: 15px; font-size: 1em; }
+        .btn-secondary:hover { background: var(--accent); color: #0f172a; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        h2.section-title {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+            color: #f1f5f9;
+        }
+
+        /* Habilidades */
+        .skills-wrapper { display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 60px; }
+        .skill-group { flex: 1; min-width: 300px; background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid #334155; }
+        .skill-group h3 { margin-top: 0; color: var(--primary); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background-color: #334155; color: #e2e8f0; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; font-weight: 600; }
+        .tag.soft { background-color: #064e3b; color: #34d399; }
+
+        /* Grid de Projetos */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .card { background: var(--bg-card); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); transition: transform 0.3s ease; border: 1px solid #334155; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.4); }
+        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card h3 { margin: 0 0 10px 0; font-size: 1.6em; color: var(--text-main); }
+        .tools { font-size: 0.85em; color: var(--primary); font-weight: bold; margin-bottom: 15px; }
+        .card p { color: var(--text-muted); font-size: 0.95em; }
+        
+        .iframe-container { position: relative; width: 100%; padding-bottom: 56.25%; background-color: #000; }
+        .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* Modais (Modo Foco) */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px); }
+        .modal-content { background-color: var(--bg-card); margin: 3% auto; padding: 40px; border: 1px solid #334155; width: 90%; max-width: 1000px; border-radius: 12px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); }
+        .close-btn { color: #94a3b8; position: absolute; top: 20px; right: 30px; font-size: 35px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: #ef4444; }
+        .modal-body h3 { color: var(--primary); font-size: 2em; margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 25px; }
+        .modal-body h4 { color: var(--accent); margin-top: 30px; font-size: 1.3em; margin-bottom: 10px; }
+        .modal-body ul { color: var(--text-muted); margin-bottom: 20px; line-height: 1.8; }
+        .modal-body li strong { color: #f8fafc; }
+        .modal-body p { color: var(--text-muted); line-height: 1.8; font-size: 1.05em; margin-bottom: 15px; }
+        .modal-body .impact-box { background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent); padding: 15px 20px; margin-top: 30px; border-radius: 0 8px 8px 0; }
+        .modal-body .impact-box p { color: #f8fafc; margin: 0; font-weight: 500; }
+
+        /* Custom Scrollbar para o Modal */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: var(--bg-main); border-radius: 8px; }
+        .modal-content::-webkit-scrollbar-thumb { background: #475569; border-radius: 8px; }
+        .modal-content::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        @media (max-width: 768px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.5em; }
+            .modal-content { width: 95%; padding: 25px; margin: 10% auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="Logo Provisória.jpg" alt="Logo Richard Viana" class="profile-logo">
+        <h1>Richard Viana Mendes</h1>
+        <div class="subtitle">Analista de Dados | Power BI, SQL & Engenharia de Automação</div>
+        <p class="summary">
+            Profissional com sólida capacidade analítica, atuando no mercado corporativo com foco na extração de insights estratégicos. Especialista no desenvolvimento de fluxos complexos de ETL, integração de bancos de dados via sistemas ERP (como TOTVS), construção de modelos preditivos e arquitetura de automações avançadas utilizando APIs, n8n e Inteligência Artificial para alavancar a tomada de decisões de negócio.
+        </p>
+        <div class="header-actions">
+            <a href="Currículo Richard.pdf" download class="btn-primary" title="Baixar Currículo em PDF">
+                <i class="fas fa-file-download"></i> Baixar Currículo
+            </a>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/richard-viana-mendes-data" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title"><i class="fas fa-tools"></i> Arsenal Analítico</h2>
+        <div class="skills-wrapper">
+            <div class="skill-group">
+                <h3>Hard Skills & Ferramentas</h3>
+                <div class="tags">
+                    <span class="tag">Power BI (DAX Avançado & UI/UX)</span>
+                    <span class="tag">SQL (Oracle & PostgreSQL)</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Excel Avançado & Power Query</span>
+                    <span class="tag">Automação (n8n & Agentes OpenAI)</span>
+                    <span class="tag">ERP TOTVS / Protheus</span>
+                    <span class="tag">Modelagem de Dados (ETL / Star Schema)</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h3>Soft Skills & Business Sense</h3>
+                <div class="tags">
+                    <span class="tag soft">Alta Capacidade Analítica</span>
+                    <span class="tag soft">Pensamento Crítico & Resolução de Problemas</span>
+                    <span class="tag soft">Data Storytelling Corporativo</span>
+                    <span class="tag soft">Visão Estratégica de Negócios (Comercial/PCP)</span>
+                    <span class="tag soft">Gestão de Tempo & Autodidatismo</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> Inteligência Corporativa (Casos Reais)</h2>
+        <div class="projects-grid">
+            
+            <div class="card">
+                <div class="iframe-container">
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZDBiN2YyNTMtZDg5NS00YWZmLTkwOTgtYmRjOTYxNTgzOGE3IiwidCI6IjhiNWQ0NDI4LTYxOWItNDEyNS1hYzk0LWM1YTA2MTViMWVjNyJ9" allowFullScreen="true"></iframe>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Forecast Comercial & Previsão Preditiva</h3>
+                        <div class="tools">Ferramentas: Power BI | DAX | TOTVS | Excel</div>
+                        <p>Desenvolvimento de modelo matemático preditivo focado em antecipar a demanda de vendas para planejamento fabril e otimização de estoque (PCP).</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openModal('modal-forecast')"><i class="fas fa-search-plus"></i> Detalhar Arquitetura do Projeto</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="iframe-container">
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNmIxOTgxNDEtOThmMi00YzU5LWEzODAtOTIyZTM1MWQxY2M1IiwidCI6IjhiNWQ0NDI4LTYxOWItNDEyNS1hYzk0LWM1YTA2MTViMWVjNyJ9" allowFullScreen="true"></iframe>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Geolocalização & Faturamento Estatal</h3>
+                        <div class="tools">Ferramentas: Power BI | TOTVS | ETL Dinâmico</div>
+                        <p>Mapeamento geoanalítico das vendas B2B, rastreando volumes (Kg/Un), performance por estado e distribuição massiva de market share por segmento de produto.</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openModal('modal-estatal')"><i class="fas fa-search-plus"></i> Detalhar Arquitetura do Projeto</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="iframe-container">
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMjZmZGFjZjEtNzI4Ny00MjBhLThiNjQtNzc2MTAzZjIzMmE4IiwidCI6IjhiNWQ0NDI4LTYxOWItNDEyNS1hYzk0LWM1YTA2MTViMWVjNyJ9" allowFullScreen="true"></iframe>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Análise de Retenção & Periodicidade (Cohort)</h3>
+                        <div class="tools">Ferramentas: Power BI | TOTVS | DAX Avançado</div>
+                        <p>Painel estratégico construído para monitorar o ciclo de vida da carteira de clientes, prevenindo churn (evasão) através de algoritmos de sazonalidade de recompra.</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openModal('modal-periodicidade')"><i class="fas fa-search-plus"></i> Detalhar Arquitetura do Projeto</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <div>
+                        <h3>Engenharia de Dados: Automação com n8n & IA</h3>
+                        <div class="tools">Ferramentas: n8n | OpenAI | Power BI Service | OneDrive API</div>
+                        <p>Arquitetura de integração sistêmica construída do zero para eliminar trabalho manual, extraindo e disparando relatórios gerenciais automaticamente via Inteligência Artificial.</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openModal('modal-automacao')"><i class="fas fa-search-plus"></i> Detalhar Arquitetura do Projeto</button>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-chart-pie"></i> Projetos de Portfólio & Storytelling</h2>
+        <div class="projects-grid">
+            
+            <div class="card">
+                <div class="iframe-container">
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMjFhOWMwZDEtNzI0Yi00Y2ViLTk4OWQtMGRkNzRmYzM4ZTA2IiwidCI6IjkyMmZkZWMxLTRjYmUtNDVjZS1hYjk5LTYxNTI4YzQxODdkMSJ9" allowFullScreen="true"></iframe>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Performance de Vendas (Loja de Eletrônicos)</h3>
+                        <div class="tools">Ferramentas: Power BI | Power Query | DAX</div>
+                        <p>Dashboard analítico robusto desenvolvido focado em inteligência de tempo (YoY, MoM), conversão por canais de venda e acompanhamento granular de equipes e vendedores.</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openModal('modal-vendas')"><i class="fas fa-search-plus"></i> Detalhar Arquitetura do Projeto</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="iframe-container">
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMWJjNmU3OGMtMjc4My00NmJhLWI1MjctY2Y5ZjE4ODVkMGFhIiwidCI6IjkyMmZkZWMxLTRjYmUtNDVjZS1hYjk5LTYxNTI4YzQxODdkMSJ9" allowFullScreen="true"></iframe>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Catálogo Netflix & UI/UX Design</h3>
+                        <div class="tools">Ferramentas: Power BI | Power Query | Kaggle | Design UI</div>
+                        <p>Análise exploratória do catálogo mundial da Netflix, destacando alta proficiência em tratamento de strings, estruturação de tabelas dimensão e design imersivo focado em usabilidade.</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openModal('modal-netflix')"><i class="fas fa-search-plus"></i> Detalhar Arquitetura do Projeto</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="iframe-container">
+                    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMGFmMjQyNWUtNWQxMC00ODBlLWE1YzEtMjJkNjliYmNiMWQ1IiwidCI6IjkyMmZkZWMxLTRjYmUtNDVjZS1hYjk5LTYxNTI4YzQxODdkMSJ9" allowFullScreen="true"></iframe>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Análise Demográfica e Estrutural dos EUA</h3>
+                        <div class="tools">Ferramentas: SQL | Power BI | Data Storytelling</div>
+                        <p>Estudo investigativo avançado utilizando SQL para explorar a densidade populacional, correlação estrutural de condados, gênero e quebra de preconceitos imigratórios na América do Norte.</p>
+                    </div>
+                    <button class="btn-secondary" onclick="openModal('modal-demografia')"><i class="fas fa-search-plus"></i> Detalhar Arquitetura do Projeto</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="modal-forecast" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-forecast')">&times;</span>
+            <div class="modal-body">
+                <h3>Forecast Comercial & Previsão Preditiva de Demanda</h3>
+                <p>O dashboard de Forecast foi idealizado e construído para resolver um dos maiores desafios de empresas com manufatura: prever o futuro das vendas baseando-se em padrões históricos. O objetivo central é fornecer ao <strong>PCP (Planejamento e Controle da Produção)</strong> informações exatas para calibrar a esteira de fabricação, mitigando o risco de ruptura de estoque ou superprodução.</p>
+                
+                <h4>Engenharia de Dados & ETL:</h4>
+                <ul>
+                    <li><strong>Extração de Sistema ERP:</strong> Consolidação de milhares de linhas de histórico de notas fiscais extraídas diretamente do banco de dados do sistema TOTVS.</li>
+                    <li><strong>Modelagem Analítica:</strong> Estruturação de um modelo de dados hierárquico (Cliente → Produto), permitindo uma investigação granular, entendendo não apenas *quem* vai comprar, mas *exatamente o quê*.</li>
+                </ul>
+
+                <h4>Lógica DAX & Construção de Métricas de Inteligência:</h4>
+                <p>A inteligência do algoritmo não se baseia em adivinhação, mas em estatística e frequência de consumo. Criei cálculos robustos em DAX para balizar o dashboard:</p>
+                <ul>
+                    <li><strong>Média de Intervalos (Dias):</strong> O motor do cálculo. Mede o tempo médio histórico exato entre compras sucessivas de cada cliente.</li>
+                    <li><strong>Dias para Compra:</strong> Uma contagem regressiva viva. Utilizando a data da <em>"Última Venda"</em> somada à <em>"Média de Intervalos"</em>, o sistema alerta precisamente quantos dias faltam para a recompra daquele material.</li>
+                    <li><strong>Forecast vs Realizado & Gap:</strong> Com a demanda mapeada, o sistema gera a meta preditiva (Forecast). O "Realizado" acompanha o faturamento atual, gerando o "Gap" (a diferença do que ainda precisa ser vendido no mês para bater a estatística).</li>
+                    <li><strong>Status Visual Preditivo:</strong> Para facilitar a leitura rápida de diretores, criei flags visuais automatizadas indicando se a tendência do cliente está <em>"Acima"</em>, <em>"Dentro"</em> ou <em>"Abaixo do esperado"</em>.</li>
+                </ul>
+                <div class="impact-box">
+                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> O modelo aproxima drasticamente o Comercial da Produção Fabril. Ele fornece previsibilidade financeira de caixa, evita capital imobilizado em estoque parado e antecipa quedas bruscas de faturamento antes mesmo do mês fechar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-estatal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-estatal')">&times;</span>
+            <div class="modal-body">
+                <h3>Inteligência de Geolocalização & Faturamento Estatal</h3>
+                <p>Este painel foi estruturado para entregar à alta gestão comercial uma leitura dinâmica de penetração de mercado pelo Brasil. Não se trata apenas de ver receita, mas de entender a capilaridade logística e física dos produtos corporativos.</p>
+                
+                <h4>Visões Estratégicas & Funcionalidades:</h4>
+                <ul>
+                    <li><strong>Visão Financeira vs Volumétrica:</strong> Os KPIs principais mostram o Faturamento Total atrelado ao volume físico vendido (Kg ou Unidades). Isso é crucial para empresas industriais, onde faturar mais não significa necessariamente expedir mais carga (devido à inflação de preço).</li>
+                    <li><strong>Mapa de Calor Dinâmico (Heatmap):</strong> O coração do dashboard. Um mapa interativo do Brasil onde a intensidade das cores determina os polos de maior receita. Configurei <em>Tooltips personalizados</em> (janelas flutuantes) de modo que, ao passar o mouse sobre um estado, o gestor vê um mini-relatório revelando imediatamente a divisão de vendas entre as categorias internas (ex: Matéria-prima, Antiespumantes, Pigmentos).</li>
+                    <li><strong>Ranking e Market Share:</strong> Gráficos que classificam o desempenho real e o percentual de participação de cada estado no faturamento total, destacando imediatamente os "Melhores Estados" em receita.</li>
+                    <li><strong>Segmentação de Mercado (Filtros Cruzados):</strong> Estruturação de filtros avançados por linhas de produtos e ramos de aplicação B2B (Tintas, Agro, Plásticos, Lubrificantes, Têxtil).</li>
+                </ul>
+                <div class="impact-box">
+                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> Ao fatiar o Brasil por ramo de aplicação, a liderança comercial consegue identificar anomalias (ex: um estado com alto agro e zero venda de produto químico agrícola) e direcionar campanhas e representantes para regiões ofuscadas, embasando planos de expansão territorial.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-periodicidade" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-periodicidade')">&times;</span>
+            <div class="modal-body">
+                <h3>Análise Cohort: Retenção, Churn & Sazonalidade (Periodicidade)</h3>
+                <p>Adquirir um novo cliente custa muito mais do que manter um atual. Baseado nessa premissa, desenvolvi este sistema de monitoramento de saúde de carteira focado em combater o <em>Churn</em> (evasão silenciosa de clientes) através do sistema TOTVS.</p>
+                
+                <h4>Engenharia DAX de Categorização de Clientes:</h4>
+                <p>Em vez de analisar apenas faturamento, criei um algoritmo via DAX que rastreia os "Dias Sem Compras" versus a "Média de Intervalos" histórica, classificando os clientes automaticamente em quatro buckets de urgência:</p>
+                <ul>
+                    <li><strong>🟢 Ativos:</strong> Comprando dentro ou no limite do intervalo esperado. Saúde ótima.</li>
+                    <li><strong>🟡 Em Reativação:</strong> O ponto crítico do dashboard. Clientes que estouraram o prazo médio, mas ainda estão na janela "recuperável". É o alerta para o setor comercial ligar imediatamente.</li>
+                    <li><strong>🔴 Inativos:</strong> Ultrapassaram gravemente a janela de tempo e precisam ser tratados pelo marketing/comercial como clientes perdidos a serem reconquistados.</li>
+                    <li><strong>🔵 Potenciais:</strong> Clientes novos sem histórico profundo para traçar médias precisas.</li>
+                </ul>
+
+                <h4>Métricas de Sazonalidade e Comportamento Operacional:</h4>
+                <ul>
+                    <li><strong>Clusterização de Recorrência:</strong> O painel rastreia quem compra de forma Mensal, Semestral, Anual ou Ocasional.</li>
+                    <li><strong>Análise de Notas Fiscais (NFs) & Heatmap Logístico:</strong> Um mapa de calor de emissão de notas cruzando os meses pelos <strong>Dias da Semana</strong>. Identifica se a operação de faturamento/expedição possui gargalos (ex: pico massivo às quintas-feiras e ociosidade às segundas).</li>
+                    <li><strong>Variação Week-over-Week (WoW):</strong> Indicadores comparando o crescimento ou queda exata da emissão de notas da semana atual contra a semana anterior, dia após dia.</li>
+                </ul>
+
+                <h4>Storytelling com Dados (NLG - Natural Language Generation):</h4>
+                <p>Implementei um recurso de "Storyline Semanal". O dashboard compila os complexos dados gráficos e traduz automaticamente em um pequeno resumo textual legível, entregando de bandeja: percentual de crescimento, total de notas e o dia mais forte da semana.</p>
+                <div class="impact-box">
+                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> Permite à equipe de vendas atuar de forma proativa, ligando para clientes prestes a "esfriar" (fase de reativação) antes de irem para o concorrente, além de otimizar a equipe de expedição logística equilibrando dias de faturamento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-automacao" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-automacao')">&times;</span>
+            <div class="modal-body">
+                <h3>Engenharia de Dados: Pipeline de Automação n8n e OpenAI</h3>
+                <p>Trabalhos de extração manual e envios de e-mails repetitivos matam a produtividade de qualquer setor analítico. Para solucionar isso, projetei e implantei uma arquitetura de integração sistêmica completamente "hands-off" (sem intervenção humana).</p>
+                
+                <h4>Arquitetura do Fluxo de Automação:</h4>
+                <ul>
+                    <li><strong>Trigger Baseado em Cron (Gatilho Temporal):</strong> O servidor n8n acorda autonomamente toda segunda-feira, pontualmente às 08h30.</li>
+                    <li><strong>Comunicação de APIs (Data Extraction):</strong> O fluxo aciona os servidores da Microsoft. Ele varre as planilhas consolidadas no OneDrive e atualiza o modelo semântico no Power BI Service para garantir que a base esteja com os dados de D-1 intactos.</li>
+                    <li><strong>Cérebro Analítico (Integração OpenAI):</strong> Em vez de mandar uma tabela crua, a automação envia os <em>arrays</em> de dados faturados para um Agente de IA parametrizado através da API da OpenAI. A IA é instruída através de prompt engineering a formatar, resumir e gerar o corpo do e-mail interpretando se a semana foi de alta ou queda.</li>
+                    <li><strong>Disparo Automatizado:</strong> O próprio fluxo assume o nó de e-mail e distribui o relatório executivo diretamente nas caixas de entrada dos diretores e líderes de área.</li>
+                </ul>
+                <div class="impact-box">
+                    <p><i class="fas fa-rocket"></i> <strong>Impacto Gerado:</strong> Eliminação brutal de margem de erro humano (copiar e colar dados errados), zero atrasos de entrega do relatório e devolução de horas úteis inestimáveis para a equipe, que pode agora focar em gerar novas análises e não em ser "operador de envio de e-mail".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-vendas" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-vendas')">&times;</span>
+            <div class="modal-body">
+                <h3>Dashboard Full-Stack: Performance de Vendas (Eletrônicos)</h3>
+                <p>Um projeto de portfólio executado de ponta a ponta sem supervisão, utilizando dados fictícios para simular um ecossistema completo de varejo de eletrônicos. Ideal para mostrar domínio total no ciclo de vida de Business Intelligence.</p>
+                
+                <h4>Processo Completo e Técnicas Empregadas:</h4>
+                <ul>
+                    <li><strong>ETL & Data Cleaning:</strong> Utilização pesada do Power Query para localizar <em>outliers</em> (vendas exorbitantes irreais) e dados nulos ou corrompidos na base original. Ajuste e saneamento desses dados, culminando na montagem de um Star Schema maduro para alta performance de processamento.</li>
+                    <li><strong>DAX e Inteligência de Tempo Financeira:</strong> A raiz do painel não é apenas a soma do total. Criei lógicas avançadas de tempo calculando crescimento <em>Month-over-Month (MoM)</em> e <em>Year-over-Year (YoY)</em> para acompanhar a cadência evolutiva dos lucros.</li>
+                    <li><strong>Análise Multidimensional:</strong>
+                        <ul>
+                            <li><strong>Tempo:</strong> Mapeamento de quais meses apresentam deficiência no pipeline de vendas.</li>
+                            <li><strong>Canais:</strong> Avaliação de ticket médio e conversão vindo de e-mail, ligações ou presencial, ditando onde o marketing deve queimar verba.</li>
+                            <li><strong>Vendedores e Equipes:</strong> Ranking dos "Top 10 Vendedores" cruzando quantidade de atendimentos com faturamento bruto para encontrar eficiência, e divisão de Metas de Equipes.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="impact-box">
+                    <p><i class="fas fa-rocket"></i> <strong>Habilidade Demonstrada:</strong> Mostra autonomia completa para pegar um banco de dados sujo e caótico e entregar um painel polido de alta gestão focado em cobrança de métricas e otimização orçamentária de canais de captação.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-netflix" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-netflix')">&times;</span>
+            <div class="modal-body">
+                <h3>Análise Exploratória: Catálogo Global Netflix & UI/UX</h3>
+                <p>Este projeto de portfólio extrai um rico dataset público do Kaggle sobre o catálogo da gigante do streaming. O foco aqui não é apenas estatístico, mas sim uma enorme prova de habilidade em Design de Interfaces para BI e manipulação de textos não-estruturados.</p>
+                
+                <h4>Engenharia Reversa de Estruturas:</h4>
+                <ul>
+                    <li><strong>Tratamento Violento de Strings (ETL Avançado):</strong> Bancos de dados de filmes vêm com cast de atores, diretores e gêneros concatenados todos dentro da mesma célula separados por vírgula. No Power Query, quebrei essas strings massivas e construí tabelas Dimensão isoladas para Diretores, Países e Atores, permitindo relações Many-to-Many no modelo de dados.</li>
+                </ul>
+
+                <h4>Design, Experiência e Storytelling:</h4>
+                <ul>
+                    <li><strong>Tema Imersivo:</strong> UI meticulosamente alinhada ao Dark Mode e a paleta de cores (Vermelho/Preto) da marca, provando que um analista de dados também precisa entregar "beleza e consumo atrativo" de informações.</li>
+                    <li><strong>Navegação Interativa:</strong> Menu lateral de ícones utilizando <em>Bookmarks</em> (Indicadores) para transitar entre visões (Séries x Filmes) dando aspecto de site ou app nativo.</li>
+                    <li><strong>Janela de Filtros em Pop-up:</strong> Para despoluir a tela e dar total espaço aos visuais (como Mapas de Calor global e Gráfico de Cascata), programei um botão limpo que abre os filtros de forma sobreposta.</li>
+                    <li><strong>Data Discoveries:</strong> Quais países detêm monopólio das produções? Qual classificação indicativa domina a grade? Qual década possui mais peso de catálogo? Tudo respondido na ponta do clique.</li>
+                </ul>
+                <div class="impact-box">
+                    <p><i class="fas fa-rocket"></i> <strong>Habilidade Demonstrada:</strong> Domínio fortíssimo da interface da ferramenta, manipulação de UI/UX para engajar o usuário final e capacidade de lidar com dados textuais "sujos".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-demografia" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-demografia')">&times;</span>
+            <div class="modal-body">
+                <h3>Estudo Sociológico e Demográfico dos Estados Unidos</h3>
+                <p>Neste estudo de dados baseados no Kaggle, assumi o papel de cientista exploratório para decifrar como a distribuição demográfica e a estrutura estatal americana funcionam, provando a importância da quebra de preconceitos guiada puramente por dados lógicos.</p>
+                
+                <h4>Mão na Massa com SQL:</h4>
+                <ul>
+                    <li><strong>Análise Exploratória via Queries:</strong> A investigação inicial não foi feita arrastando colunas, mas escovando o banco de dados via SQL. Isolei valores duplicados e identifiquei inconsistências severas de registros na base crua.</li>
+                    <li><strong>Manipulação Unpivot:</strong> Populações divididas por gênero e etnia estavam fatiadas em diversas colunas, o que anula as possibilidades analíticas no DAX. Executei comandos estruturados de Unpivot e exclusão de colunas obsoletas para criar uma base limpa de análise tabular.</li>
+                </ul>
+
+                <h4>Storytelling Crítico & Descobertas:</h4>
+                <p>Deixei os dados contarem a história. No painel, destaquei fatos fundamentais e estruturais:</p>
+                <ul>
+                    <li><strong>A Força do Sul (Califórnia e Texas):</strong> Identifiquei a explosão populacional nesses estados movidos por diversidade cultural massiva, clima e recepção pesada de imigrantes globais.</li>
+                    <li><strong>Desmistificando Vieses:</strong> O painel mostra o poder da diversidade em estados geralmente lidos como "conservadores". O cruzamento de dados quebrou a suposição de que estados do Sul profundo americano são majoritariamente homogêneos; a volumetria de etnias refuta o dado.</li>
+                    <li><strong>Administração e Controle (Condados):</strong> Análise revelou uma discrepância gigantesca na divisão territorial (condados) do estado do Texas, um artifício governamental para manter controle de autoridade sobre áreas absurdamente extensas.</li>
+                </ul>
+                <div class="impact-box">
+                    <p><i class="fas fa-rocket"></i> <strong>Habilidade Demonstrada:</strong> Mostra um nível profundo de pensamento crítico. Capacidade de usar SQL pesado para limpar a base, construir o wireframe completo do layout num PowerPoint antes e, finalmente, entregar no Power BI uma análise que não só olha números, mas interpreta geografia, política e sociedade.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funções para controle do Modo Foco (Modais)
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Evita rolagem da página de fundo
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura rolagem
+        }
+
+        // Fecha o modal ao clicar fora da janela de conteúdo
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
